@@ -1,6 +1,6 @@
-﻿A web app to display the news from various sources using NewsAPI.
+﻿A web app to display the news from various sources using a news API.
 
 Copy or Clone repo
 
-In 'cireneirbo-gazette/ClientApp' add NewsAPI dependencies with 'npm install newsapi --save'.
+
 
