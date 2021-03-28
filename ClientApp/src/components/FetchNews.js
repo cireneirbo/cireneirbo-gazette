@@ -1,5 +1,4 @@
 ﻿import React, { Component } from 'react';
-//import NewsAPI from 'newsapi';
 
 export class FetchNews extends Component {
     static displayName = FetchNews.name;
@@ -53,19 +52,8 @@ export class FetchNews extends Component {
     }
 
     async populateNewsData() {
-        //const newsapi = new NewsAPI('API_KEY');
 
         const response = await fetch('newsarticles');
-
-        /*const response = await newsapi.v2.topHeadlines({
-            sources: 'bbc-news,the-verge',
-            q: 'bitcoin',
-            category: 'business',
-            language: 'en',
-            country: 'us'
-        }).then(response => {
-            console.log(response);
-        });*/
 
         const data = await response.json();
         this.setState({ articles: data, loading: false });
