@@ -2,5 +2,5 @@
 
 Copy or Clone repo
 
-
+npm install bootstrap
 
