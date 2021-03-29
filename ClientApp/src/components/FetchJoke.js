@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react';
+import axios from 'axios';
 
 export class FetchJoke extends Component {
     static displayName = FetchJoke.name;
@@ -25,11 +26,9 @@ export class FetchJoke extends Component {
                 </thead>
                 <tbody>
                     {jokes.map(joke =>
-                        <tr key={joke.date}>
-                            <td>{joke.date}</td>
-                            <td>{joke.temperatureC}</td>
-                            <td>{joke.temperatureF}</td>
-                            <td>{joke.summary}</td>
+                        <tr key={joke.setup}>
+                            <td>{joke.setup}</td>
+                            <td>{joke.delivery}</td>
                         </tr>
                     )}
                 </tbody>
@@ -38,7 +37,7 @@ export class FetchJoke extends Component {
     }
 
     render() {
-        let contents = this.state.loading
+        /*let contents = this.state.loading
             ? <p><em>Loading...</em></p>
             : FetchJoke.renderJokesTable(this.state.jokes);
 
@@ -48,12 +47,43 @@ export class FetchJoke extends Component {
                 <p>This component demonstrates fetching data from the server.</p>
                 {contents}
             </div>
-        );
+        );*/
+        const { error, isLoaded, items } = this.state;
+        if (error) {
+            return <div>Error: {error.message}</div>;
+        } else if (!isLoaded) {
+            return <div>Loading...</div>;
+        } else {
+            return (
+                <ul>
+                    {items.map(item => (
+                        <li key={item.username}>
+                            {item.username}: {item.name}
+                        </li>
+                    ))}
+                </ul>
+            );
+        }
     }
 
     async populateJokeData() {
+        /*
         const response = await fetch('joke');
         const data = await response.json();
-        this.setState({ jokes: data, loading: false });
+        this.setState({ jokes: data, loading: false });*/
+        axios.get("https://jsonplaceholder.typicode.com/users").then(
+            result => {
+                this.setState({
+                    isLoaded: true,
+                    items: result.data
+                });
+            },
+            error => {
+                this.setState({
+                    isLoaded: true,
+                    error
+                });
+            }
+        );
     }
 }
