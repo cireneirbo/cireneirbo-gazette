@@ -28,7 +28,7 @@ export class FetchJoke extends Component {
                     {jokes.map(joke =>
                         <tr key={joke.setup}>
                             <td>{joke.setup}</td>
-                            <td>{joke.delivery}</td>
+                            <td>{joke.punchline}</td>
                         </tr>
                     )}
                 </tbody>
@@ -37,7 +37,7 @@ export class FetchJoke extends Component {
     }
 
     render() {
-        /*let contents = this.state.loading
+        let contents = this.state.loading
             ? <p><em>Loading...</em></p>
             : FetchJoke.renderJokesTable(this.state.jokes);
 
@@ -47,7 +47,7 @@ export class FetchJoke extends Component {
                 <p>This component demonstrates fetching data from the server.</p>
                 {contents}
             </div>
-        );*/
+        );/*
         const { error, isLoaded, items } = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
@@ -63,19 +63,19 @@ export class FetchJoke extends Component {
                     ))}
                 </ul>
             );
-        }
+        }*/
     }
 
     async populateJokeData() {
-        /*
-        const response = await fetch('joke');
+        
+        const response = await fetch('https://official-joke-api.appspot.com/random_joke');
         const data = await response.json();
-        this.setState({ jokes: data, loading: false });*/
-        axios.get("https://jsonplaceholder.typicode.com/users").then(
+        this.setState({ jokes: data, loading: false });
+        /*axios.get("https://jsonplaceholder.typicode.com/users").then(
             result => {
                 this.setState({
                     isLoaded: true,
-                    items: result.data
+                    jokes: result.data
                 });
             },
             error => {
@@ -84,6 +84,6 @@ export class FetchJoke extends Component {
                     error
                 });
             }
-        );
+        );*/
     }
 }
