@@ -44,23 +44,7 @@ export class FetchJoke extends Component {
                 <p>This component demonstrates fetching data from https://official-joke-api.appspot.com/random_joke.</p>
                 {contents}
             </div>
-        );/*
-        const { error, isLoaded, items } = this.state;
-        if (error) {
-            return <div>Error: {error.message}</div>;
-        } else if (!isLoaded) {
-            return <div>Loading...</div>;
-        } else {
-            return (
-                <ul>
-                    {items.map(item => (
-                        <li key={item.username}>
-                            {item.username}: {item.name}
-                        </li>
-                    ))}
-                </ul>
-            );
-        }*/
+        );
     }
 
     async populateJokeData() {
@@ -68,19 +52,5 @@ export class FetchJoke extends Component {
         const response = await fetch('https://official-joke-api.appspot.com/random_joke');
         const data = await response.json();
         this.setState({ jokes: [data], loading: false });
-        /*axios.get("https://jsonplaceholder.typicode.com/users").then(
-            result => {
-                this.setState({
-                    isLoaded: true,
-                    jokes: result.data
-                });
-            },
-            error => {
-                this.setState({
-                    isLoaded: true,
-                    error
-                });
-            }
-        );*/
     }
 }
