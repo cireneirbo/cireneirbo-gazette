@@ -1,5 +1,4 @@
 ﻿import React, { Component } from 'react';
-import axios from 'axios';
 
 export class FetchJoke extends Component {
     static displayName = FetchJoke.name;
@@ -18,10 +17,8 @@ export class FetchJoke extends Component {
             <table className='table table-striped' aria-labelledby="tabelLabel">
                 <thead>
                     <tr>
-                        <th>Date</th>
-                        <th>Temp. (C)</th>
-                        <th>Temp. (F)</th>
-                        <th>Summary</th>
+                        <th>Setup</th>
+                        <th>Punchline</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,7 +41,7 @@ export class FetchJoke extends Component {
         return (
             <div>
                 <h1 id="tabelLabel" >Joke</h1>
-                <p>This component demonstrates fetching data from the server.</p>
+                <p>This component demonstrates fetching data from https://official-joke-api.appspot.com/random_joke.</p>
                 {contents}
             </div>
         );/*
@@ -70,7 +67,7 @@ export class FetchJoke extends Component {
         
         const response = await fetch('https://official-joke-api.appspot.com/random_joke');
         const data = await response.json();
-        this.setState({ jokes: data, loading: false });
+        this.setState({ jokes: [data], loading: false });
         /*axios.get("https://jsonplaceholder.typicode.com/users").then(
             result => {
                 this.setState({
